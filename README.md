@@ -1,2 +1,0 @@
-# Valespeth
-"Luxor" Game
