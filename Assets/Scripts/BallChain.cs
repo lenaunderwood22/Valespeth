@@ -17,7 +17,7 @@ public class BallChain : MonoBehaviour{
     List<Color> ballsColors = new List<Color>();
     List<float> ballsPosition = new List<float>();
 
-    float rateByTime;
+    float ballAppearanceTime; // Frequency of balls appearing in chain
     float timer;
 
     GameManager GM;
@@ -27,13 +27,13 @@ public class BallChain : MonoBehaviour{
 
         timer = -GM.TimerDelay;
 
-        rateByTime = GM.RateByDistance / GM.RollingSpeed;
+        ballAppearanceTime = GM.BallDiameter / GM.RollingSpeed;
     }
 
     void FixedUpdate() {
         timer += Time.fixedDeltaTime;
 
-        if(timer > rateByTime) {
+        if(timer > ballAppearanceTime) {
             timer = 0;
 
             AddRoller();
@@ -43,8 +43,11 @@ public class BallChain : MonoBehaviour{
     }
 
     void UpdateBalls (float distance) {
-        for(int i = 0; i < ballsPosition.Count; i++) {
-            ballsPosition[i] += distance;
+        for(int i = ballsPosition.Count - 1; i >= 0; i--) {
+            if(i < ballsPosition.Count - 1 && (ballsPosition[i] - ballsPosition[i + 1]) > GM.BallDiameter) {
+                break;  // Don't move any more balls until the last part has caught up
+            }
+            ballsPosition[i] += distance; 
             rollers[i].transform.position = Curve.path.GetPointAtDistance(ballsPosition[i]);
         }
     }
@@ -106,10 +109,10 @@ public class BallChain : MonoBehaviour{
 
         float futurePosition = ballsPosition[atIndex];
 
-        float offset = (rateByTime - timer) * GM.RollingSpeed;
+        float offset = (ballAppearanceTime - timer) * GM.RollingSpeed;
         timer = 0;
 
-        SubtractTill(atIndex-1, GM.RateByDistance);
+        SubtractTill(atIndex-1, GM.BallDiameter);
 
         ballsPosition.Insert(atIndex, futurePosition);
         rollers.Insert(atIndex, ball);

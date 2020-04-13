@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 
     public float ProjectileMoveSpeed = 5f;
 
-    public float RateByDistance = 1f;
+    public float BallDiameter = 1f;
     public float RollingSpeed = 1.5f;
 
     public float TimerDelay = 2f;
