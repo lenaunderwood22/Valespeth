@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
+    public bool GameIsOver = false;
+
     public GameObject RollerPrefab;
     public List<Color> BallColors;
     
@@ -31,12 +33,18 @@ public class GameManager : MonoBehaviour {
 
     public float TimerDelay = 2f;
 
+     int ballChainsCompleted = 0;
+
     //private
     
     float shootTimer;
 
+    int ballChainsCount = 0;
+
     void Start () {        
         shootTimer = 0;
+
+        ballChainsCount = FindObjectsOfType(typeof(BallChain)).Length;
     }
 
     void Update () {
@@ -47,6 +55,29 @@ public class GameManager : MonoBehaviour {
         }
 
         shootTimer += Time.deltaTime;
+    }
+
+    public void LoseTheGame () {
+        //!temp
+        Time.timeScale = 0;
+
+        GameIsOver = true;
+        Debug.Log("<color=yellow>Game Over: You Lost!</color>");
+    }
+
+    void GameWon () {
+        Time.timeScale = 0;
+
+        GameIsOver = true;
+        Debug.Log("<color=green>Game Over: You WOOON!</color>");
+    }
+
+    public void AppendBallChainsCount () {
+        ballChainsCompleted++;
+
+        if (ballChainsCompleted == ballChainsCount) {
+            GameWon();
+        }
     }
 
     public static Vector3 CubicInterp (Transform pA, Transform pB, float t) {

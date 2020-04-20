@@ -32,6 +32,8 @@ public class Shooter : MonoBehaviour {
     void Refill () {
         currentBall = Instantiate(ProjectilePrefab);
 
+        currentBall.transform.localScale = Vector3.one * GM.BallDiameter;
+        
         currentBall.transform.position = SpawnTran.position;
 
         Color randColor = GM.BallColors[Random.Range(0, GM.BallColors.Count)];

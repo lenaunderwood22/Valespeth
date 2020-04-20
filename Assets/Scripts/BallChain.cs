@@ -17,8 +17,14 @@ public class BallChain : MonoBehaviour{
     List<Color> ballsColors = new List<Color>();
     List<float> ballsPosition = new List<float>();
 
+    public int BallSpawnAmount = 20;
+
+    int spawnedBallsAmount = 0;
+
     float ballAppearanceTime; // Frequency of balls appearing in chain
     float timer;
+
+    bool isFinished = false;
 
     GameManager GM;
 
@@ -31,12 +37,35 @@ public class BallChain : MonoBehaviour{
     }
 
     void FixedUpdate() {
-        timer += Time.fixedDeltaTime;
+        if (isFinished) {
+            return;
+        }
 
-        if(timer > ballAppearanceTime) {
+        if (spawnedBallsAmount < BallSpawnAmount) {
+            timer += Time.fixedDeltaTime;
+        } else {
+            timer = 0;
+        }
+
+
+        if(timer > ballAppearanceTime && spawnedBallsAmount < BallSpawnAmount) {
             timer = 0;
 
             AddRoller();
+        }
+
+        if (!GM.GameIsOver) {
+            if (rollers.Count > 0) {
+                if (Vector3.Distance(Curve.path.localPoints[Curve.path.localPoints.Length - 1], rollers[0].transform.position) < GM.BallDiameter) {
+                    GM.LoseTheGame();
+                }
+            } else {
+                if (spawnedBallsAmount == BallSpawnAmount) {
+                    GM.AppendBallChainsCount();
+
+                    isFinished = true;
+                }
+            }
         }
 
         UpdateBalls(Time.fixedDeltaTime * GM.RollingSpeed);
@@ -101,13 +130,22 @@ public class BallChain : MonoBehaviour{
         ballsPosition.Add(0);
         rollers.Add(ball);
         ballsColors.Add(col);
+
+        spawnedBallsAmount++;
     }
 
     public void AddRoller (int atIndex, Color ballColor) {
         GameObject ball = CreateNewBall();
         ball.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", ballColor);
 
-        float futurePosition = ballsPosition[atIndex];
+        float futurePosition;
+        
+        if (spawnedBallsAmount < BallSpawnAmount) {
+            futurePosition = ballsPosition[atIndex];
+        } else {
+            futurePosition = ballsPosition[(atIndex-1) < 0 ? 0 : (atIndex-1)];
+        }
+
 
         float offset = (ballAppearanceTime - timer) * GM.RollingSpeed;
         timer = 0;
@@ -123,6 +161,8 @@ public class BallChain : MonoBehaviour{
 
     GameObject CreateNewBall() {
         GameObject newBall = Instantiate(GM.RollerPrefab);
+
+        newBall.transform.localScale = Vector3.one * GM.BallDiameter;
 
         newBall.transform.SetParent(transform);
 
