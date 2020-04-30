@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2110507973258465056}
   - component: {fileID: 614136395186866847}
   - component: {fileID: 7203916730223099145}
+  - component: {fileID: -3938807211592936311}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -93,3 +94,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallColorID: 0
+--- !u!114 &-3938807211592936311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182018245828806190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86506bcf2b76547a09eaaca9c6fca7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  up: 1
+  force: 1
+  newMat: {fileID: 2100000, guid: f2912562cbb29476cb04dd9e26fe8f4c, type: 2}
