@@ -12,6 +12,12 @@ public class Projectile : MonoBehaviour {
 
     float speed = 0;
 
+    float rotationSpeed = 200;
+
+
+    Vector3 currentEulerAngles;
+    Quaternion currentRotation;
+
     Collider lastCollider;
     Vector3 lastHitPoint;
 
@@ -48,6 +54,10 @@ public class Projectile : MonoBehaviour {
         }
 
         transform.position += transform.forward * speed * Time.deltaTime;
+
+        currentEulerAngles += new Vector3(0.0f, 0.0f, -3.0f)  * Time.deltaTime * rotationSpeed;
+        currentRotation.eulerAngles = currentEulerAngles;
+        transform.rotation = currentRotation;
         
         if (lastCollider != null) {
             if (Vector3.Distance(transform.position, lastCollider.transform.position) <= gm.BallDiameter) {

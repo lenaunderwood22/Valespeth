@@ -26,6 +26,13 @@ public class Roller : MonoBehaviour {
     // float speed = 0;
     float speedDelta = 0;
 
+    float rotationSpeed = 45;
+
+
+    Vector3 currentEulerAngles;
+    Quaternion currentRotation;
+
+
     GameManager gm;
 
     public void ActivateRoller (Chain _chain, float startPos, int rollerColorID) {
@@ -51,11 +58,20 @@ public class Roller : MonoBehaviour {
     public void UpdatePositionBySpeed (float atSpeed) {
         pos += atSpeed * Time.deltaTime;
         transform.position = curve.path.GetPointAtDistance(pos);
+
+        currentEulerAngles += new Vector3(0.0f, 0.0f, -1.0f)  * Time.deltaTime * rotationSpeed;
+        currentRotation.eulerAngles = currentEulerAngles;
+        transform.rotation = currentRotation;
+
     }
 
     public void UpdatePositionByDelta (float positionDelta) {
         pos += positionDelta;
         transform.position = curve.path.GetPointAtDistance(pos);
+
+        currentEulerAngles += new Vector3(0.0f, 0.0f, -1.0f)  * Time.deltaTime * rotationSpeed;
+        currentRotation.eulerAngles = currentEulerAngles;
+        transform.rotation = currentRotation;
     }
 
     void OnEnable () {
