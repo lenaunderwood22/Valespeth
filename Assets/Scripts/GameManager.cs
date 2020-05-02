@@ -27,8 +27,25 @@ public class GameManager : MonoBehaviour {
 
     public Shooter MainShooter;
 
+    public ShooterMovement shooterMovement;
+
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+
+        //Mobile touch
+        if (Input.touchCount > 0)
+        {
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            shooterMovement.Move(touchPos.x);
+            MainShooter.ShootProjectile();
+
+            //It works if I just call MainShooter.ShootProjectile(),
+            //but it doesn't work when I try to move the shooter to the x coordinate
+            //of the touch position.
+        }
+
+        //Playing on computer
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             MainShooter.ShootProjectile();
         }
     }

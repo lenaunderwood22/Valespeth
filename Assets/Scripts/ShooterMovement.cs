@@ -19,11 +19,21 @@ public class ShooterMovement : MonoBehaviour {
     }
 
     void Update() {
+        
         float axisVal = Input.GetAxisRaw("Horizontal");
-
         currentPos.x += axisVal * speed * Time.deltaTime;
+
         currentPos.x = Mathf.Clamp(currentPos.x, -maxDistance, maxDistance);
 
+        RootTran.transform.position = startingPosition + currentPos;
+    }
+
+
+    //This function is used for mobile touches
+    //Function called in GameManager.cs Update()
+    public void Move (float x)
+    {
+        currentPos.x = x;
         RootTran.transform.position = startingPosition + currentPos;
     }
 }

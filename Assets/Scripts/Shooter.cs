@@ -44,5 +44,4 @@ public class Shooter : MonoBehaviour {
         curProjectile.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", randColor * gm.ColorEmissionIntensity);
         curProjectile.GetComponent<Projectile>().BallColorID = randColorID;
     }
-
 }
