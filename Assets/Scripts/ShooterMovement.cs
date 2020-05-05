@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShooterMovement : MonoBehaviour {
 
     public Transform RootTran;
+    public GameObject InputCanvas;
 
     public float speed = 2f;
     public float maxDistance = 10f;
@@ -21,6 +22,13 @@ public class ShooterMovement : MonoBehaviour {
     void Update() {
         float axisVal = Input.GetAxisRaw("Horizontal");
 
+        currentPos.x += axisVal * speed * Time.deltaTime;
+        currentPos.x = Mathf.Clamp(currentPos.x, -maxDistance, maxDistance);
+
+        RootTran.transform.position = startingPosition + currentPos;
+    }
+
+    public void Move (float axisVal) {
         currentPos.x += axisVal * speed * Time.deltaTime;
         currentPos.x = Mathf.Clamp(currentPos.x, -maxDistance, maxDistance);
 

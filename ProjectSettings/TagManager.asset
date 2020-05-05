@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Left
+  - Right
+  - Shoot
   layers:
   - Default
   - TransparentFX

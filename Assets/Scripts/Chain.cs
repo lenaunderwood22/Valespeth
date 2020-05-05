@@ -99,8 +99,8 @@ public class Chain : MonoBehaviour {
     void CheckAnimationAndRemove (int from, int till) {
         for (int i = till; i >= from; i--) {
             if (i != from) {
-                if (Vector3.Distance(Rollers[i].Tran.position, Rollers[i-1].Tran.position) > gm.BallDiameter + 0.01f) {
-                    Debug.Log(Vector3.Distance(Rollers[i].Tran.position, Rollers[i-1].Tran.position));
+                if (Vector3.Distance(Rollers[i].Tran.position, Rollers[i-1].Tran.position) > gm.BallDiameter + 0.05f) {
+                    //Debug.Log(Vector3.Distance(Rollers[i].Tran.position, Rollers[i-1].Tran.position));
                     return;
                 }
             }
