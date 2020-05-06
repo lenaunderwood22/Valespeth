@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
 
     void Update () {
-        #if UNITY_STANDALONE
+        //#if UNITY_STANDALONE
         if (Input.GetKeyDown(KeyCode.Space) && shootTimer > ShootRate) {
             MainShooter.ShootProjectile();
             shootTimer = 0;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             BackToTitleScreen();
         }
-        #endif
+        //#endif
 
         #if UNITY_IOS || UNITY_ANDROID
 
