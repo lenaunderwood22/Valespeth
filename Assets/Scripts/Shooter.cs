@@ -30,6 +30,7 @@ public class Shooter : MonoBehaviour {
         curProjectile.GetComponent<Projectile>().ActivateProjectile(curProjectile.transform.position, ProjectileSpeed);
 
         chain.currentHitCount += 1;
+
         Refill();
     }
 
