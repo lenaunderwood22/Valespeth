@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour {
+    public Chain chain;
 
     [SerializeField] Transform SpawnPoint;
     [SerializeField] Projectile ProjectilePrefab;
@@ -28,6 +29,7 @@ public class Shooter : MonoBehaviour {
     public void ShootProjectile() {
         curProjectile.GetComponent<Projectile>().ActivateProjectile(curProjectile.transform.position, ProjectileSpeed);
 
+        chain.currentHitCount += 1;
         Refill();
     }
 

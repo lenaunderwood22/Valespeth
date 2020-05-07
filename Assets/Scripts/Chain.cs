@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using PathCreation;
+using TMPro;
 
 public class Chain : MonoBehaviour {
 
     public PathCreator Curve;
     public Roller RollerPrefab;
+    public GameObject collisionText;
 
     public int RollerCount = 10;
     public float MoveSpeed = 1f;
 
     public float ColorCheckRate = 0.2f;
+
+     public Material newMat;
 
     [HideInInspector] public List<Roller> Rollers = new List<Roller>();
 
@@ -33,6 +38,29 @@ public class Chain : MonoBehaviour {
 
     Coroutine currentStallCor;
     Coroutine colorCheckerCor;
+
+     //Explosion
+    float sphereSize = 0.5f;
+    int spheresInRow = 3;
+
+    float radius = 1.3f;
+
+    float up = 1.5f;
+
+    float force = 1.3f;
+
+   
+
+    Vector3 cubePivot;
+
+    Vector3 explosionPos;
+
+    List<GameObject> pieces = new List<GameObject>();
+
+    //Text
+    [HideInInspector] public int currentHitCount;
+    int previousHitCount = 0;
+
 
     void Start () {
         gm = GameManager.singleton;
@@ -110,9 +138,34 @@ public class Chain : MonoBehaviour {
             }
         }
 
+        Vector3 TextPos = Rollers[till].GetComponent<Transform>().position;
+        collisionText.GetComponent<TextMeshPro>().color = gm.BallColors[Rollers[till].RollerColorID] + new Color32(0, 0, 0, 255);
+        if(previousHitCount != 0 && currentHitCount - previousHitCount == 1){
+                ShowText(TextPos, "Streak!");
+            }else if(previousHitCount != 0 && previousHitCount == currentHitCount){
+                ShowText(TextPos, "Streak!");
+            }
+            else if((till - from) == 3){
+                ShowText(TextPos, "Nice!");
+            }else if((till - from) == 4 ){
+                ShowText(TextPos, "Great!");
+            }else if(till - from == 5 ){
+                ShowText(TextPos, "Amazing!");
+            }else if(till - from > 5 ){
+                ShowText(TextPos, "Wonderful!");
+            }else{
+                ShowText(TextPos, "Hit!");
+            }
+
         for (int i = till; i >= from; i--) {
+            int PiecesColor = Rollers[i].RollerColorID;
+            Vector3 explosionPos = Rollers[i].GetComponent<Transform>().position;
+            explode(explosionPos, PiecesColor);
+
             Destroy(Rollers[i].gameObject);
         }
+
+        previousHitCount = currentHitCount; 
     }
 
     #region Roller Adding
@@ -271,6 +324,79 @@ public class Chain : MonoBehaviour {
 
         currentSpeed = MoveSpeed;
     }
+
+    #endregion
+
+    #region EffectsForHitExplosion
+
+    private void creatPieces(int x, int y, int z, Vector3 explosionPos, int PiecesColorID){
+        GameObject piece;
+        piece = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+        piece.transform.position = explosionPos + new Vector3(x*sphereSize, y*sphereSize, z*sphereSize) - cubePivot;
+        piece.transform.localScale = new Vector3(sphereSize, sphereSize, sphereSize);
+
+        
+        piece.GetComponent<MeshRenderer>().material = newMat;
+        piece.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", gm.BallColors[PiecesColorID] * gm.ColorEmissionIntensity);
+    
+        // piece.GetComponent<SphereCollider>().isTrigger = true;
+
+        piece.AddComponent<Rigidbody>();
+        piece.GetComponent<Rigidbody>().mass = sphereSize;
+        
+        pieces.Add(piece);
+        
+        Destroy(piece, 1.5f);
+        
+    }
+
+    private void explode(Vector3 explosionPos, int PiecesColorID){
+
+        // gameObject.SetActive(false);
+
+    
+
+        for(int x = 0; x < spheresInRow; x++){
+            for(int y = 0; y < spheresInRow; y++){
+                for(int z = 0; z < spheresInRow; z++){
+                    creatPieces(x,y,z,explosionPos, PiecesColorID);
+                }
+            }
+        }
+
+    
+        // Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+        foreach(GameObject nearby in pieces){
+            Rigidbody rb = nearby.GetComponent<Rigidbody>();
+            nearby.SetActive(true);
+            if(rb != null){
+                rb.AddExplosionForce(force, explosionPos, radius, up, ForceMode.Impulse);
+                rb.AddForce(new Vector3(0f, 0f, 3f), ForceMode.Impulse);
+
+            }
+        }
+
+        pieces.Clear();
+    }
+
+    #endregion
+
+    #region EffectsForHitText
+
+    private void ShowText(Vector3 TextLocation, string words){
+        collisionText.transform.position = TextLocation + new Vector3(10f, 0f, 0f);
+        collisionText.GetComponent<TextMeshPro>().text = words;
+        collisionText.SetActive(true); 
+        Invoke("DeactivateText", 2);  
+        
+    }
+
+    private void DeactivateText()
+     {
+         collisionText.SetActive(false);      
+ 
+     }
 
     #endregion
 }

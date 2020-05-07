@@ -26,6 +26,10 @@ public class Projectile : MonoBehaviour {
 
         speed = _speed;
 
+        GetComponent<TrailRenderer>().enabled=true; 
+        GetComponent<TrailRenderer>().startColor = (gm.BallColors[BallColorID] * gm.ColorEmissionIntensity);
+        // GetComponent<TrailRenderer>().endColor = (gm.BallColors[BallColorID] * (gm.ColorEmissionIntensity));
+
         Destroy(gameObject, 10f);
     }
 
