@@ -431,6 +431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bce8fb53b9d53b47941297561ef69dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chain: {fileID: 0}
+  shoot: {fileID: 0}
+  RollMat: {fileID: 2100000, guid: 7bc31d1a43dc84514a22be28d4ea375e, type: 2}
   SpawnPoint: {fileID: 4972646908356211549}
   ProjectilePrefab: {fileID: 7203916730223099145, guid: da1ccd6f2cbc749ec9b5352d1e5044a8,
     type: 3}

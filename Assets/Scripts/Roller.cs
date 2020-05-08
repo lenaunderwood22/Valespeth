@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using UnityEngine.SceneManagement;
 
 public class Roller : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class Roller : MonoBehaviour {
     public Transform Tran;
     public Transform GraphicsRootTran;
     public MeshRenderer GraphicsMeshRend;
+
+    public Material RollMat;
 
     public float InsertSpeed = 0.125f;
 
@@ -26,7 +29,7 @@ public class Roller : MonoBehaviour {
     // float speed = 0;
     float speedDelta = 0;
 
-    float rotationSpeed = 45;
+    float rotationSpeed = 70;
 
 
     Vector3 currentEulerAngles;
@@ -46,6 +49,11 @@ public class Roller : MonoBehaviour {
 
         RollerColorID = rollerColorID;
         maxPos = chain.Curve.path.length - gm.FinishPointDistanceOffset;
+
+        if(SceneManager.GetActiveScene().name.Equals("Level1")
+        || SceneManager.GetActiveScene().name.Equals("Level4")){
+            GraphicsMeshRend.material = RollMat;
+        }
 
         GraphicsMeshRend.material.SetColor("_BaseColor", gm.BallColors[RollerColorID] * gm.ColorEmissionIntensity);
     }

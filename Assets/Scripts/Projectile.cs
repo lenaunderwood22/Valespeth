@@ -15,6 +15,12 @@ public class Projectile : MonoBehaviour {
     Collider lastCollider;
     Vector3 lastHitPoint;
 
+    float rotationSpeed = 70;
+
+
+    Vector3 currentEulerAngles;
+    Quaternion currentRotation;
+
     void OnEnable () {
         gm = GameManager.singleton;
     }
@@ -28,7 +34,6 @@ public class Projectile : MonoBehaviour {
 
         GetComponent<TrailRenderer>().enabled=true; 
         GetComponent<TrailRenderer>().startColor = (gm.BallColors[BallColorID] * gm.ColorEmissionIntensity);
-        // GetComponent<TrailRenderer>().endColor = (gm.BallColors[BallColorID] * (gm.ColorEmissionIntensity));
 
         Destroy(gameObject, 10f);
     }
@@ -52,6 +57,10 @@ public class Projectile : MonoBehaviour {
         }
 
         transform.position += transform.forward * speed * Time.deltaTime;
+
+        currentEulerAngles += new Vector3(0.0f, 0.0f, -1.0f)  * Time.deltaTime * rotationSpeed;
+        currentRotation.eulerAngles = currentEulerAngles;
+        transform.rotation = currentRotation;
         
         if (lastCollider != null) {
             if (Vector3.Distance(transform.position, lastCollider.transform.position) <= gm.BallDiameter) {

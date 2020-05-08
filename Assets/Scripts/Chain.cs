@@ -16,7 +16,9 @@ public class Chain : MonoBehaviour {
 
     public float ColorCheckRate = 0.2f;
 
-     public Material newMat;
+    public Material newMat;
+
+    public AudioSource Hit;
 
     [HideInInspector] public List<Roller> Rollers = new List<Roller>();
 
@@ -49,8 +51,6 @@ public class Chain : MonoBehaviour {
 
     float force = 1.3f;
 
-   
-
     Vector3 cubePivot;
 
     Vector3 explosionPos;
@@ -60,6 +60,9 @@ public class Chain : MonoBehaviour {
     //Text
     [HideInInspector] public int currentHitCount;
     int previousHitCount = 0;
+
+    
+    
 
 
     void Start () {
@@ -156,6 +159,7 @@ public class Chain : MonoBehaviour {
             }else{
                 ShowText(TextPos, "Hit!");
             }
+        Hit.Play();
 
         for (int i = till; i >= from; i--) {
             int PiecesColor = Rollers[i].RollerColorID;

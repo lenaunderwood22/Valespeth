@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PausePanel: {fileID: 4555108154084932602}
   PauseButton: {fileID: 975156903160542569}
+  bgm: {fileID: 0}
 --- !u!1 &975156903148079826
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +267,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2804288282699113042}
         m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6662583799808084167, guid: ba784b636fd0046f8ad8cd0202e20f0d,
+          type: 3}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -551,6 +564,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2804288282699113042}
         m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6662583799808084167, guid: ba784b636fd0046f8ad8cd0202e20f0d,
+          type: 3}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1077,6 +1102,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6662583799808084167, guid: ba784b636fd0046f8ad8cd0202e20f0d,
+          type: 3}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5454572930596294782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1234,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2804288282699113042}
         m_MethodName: BackToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6662583799808084167, guid: ba784b636fd0046f8ad8cd0202e20f0d,
+          type: 3}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

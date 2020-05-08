@@ -62,6 +62,7 @@ MonoBehaviour:
   Tran: {fileID: 1985459175879326472}
   GraphicsRootTran: {fileID: 3473993953607163116}
   GraphicsMeshRend: {fileID: 4323934354439452188}
+  RollMat: {fileID: 2100000, guid: 7bc31d1a43dc84514a22be28d4ea375e, type: 2}
   InsertSpeed: 0.4
   chain: {fileID: 0}
 --- !u!1 &4252481440306774002

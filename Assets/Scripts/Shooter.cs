@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Shooter : MonoBehaviour {
     public Chain chain;
+    public AudioSource shoot;
+
+    public Material RollMat;
 
     [SerializeField] Transform SpawnPoint;
     [SerializeField] Projectile ProjectilePrefab;
@@ -30,11 +34,16 @@ public class Shooter : MonoBehaviour {
         curProjectile.GetComponent<Projectile>().ActivateProjectile(curProjectile.transform.position, ProjectileSpeed);
 
         chain.currentHitCount += 1;
+        shoot.Play();
         Refill();
     }
 
     void Refill () {
         curProjectile = Instantiate(ProjectilePrefab);
+        if(SceneManager.GetActiveScene().name.Equals("Level1")
+        || SceneManager.GetActiveScene().name.Equals("Level4")){
+            curProjectile.GetComponent<MeshRenderer>().material = RollMat;
+        }
 
         curProjectile.transform.localScale = Vector3.one * gm.BallDiameter;
         

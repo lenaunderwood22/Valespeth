@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallColorID: 0
+  RollMat: {fileID: 2100000, guid: 7bc31d1a43dc84514a22be28d4ea375e, type: 2}
 --- !u!96 &-7312422748404268185
 TrailRenderer:
   serializedVersion: 2
