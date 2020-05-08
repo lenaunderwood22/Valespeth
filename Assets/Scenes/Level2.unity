@@ -203,6 +203,11 @@ PrefabInstance:
       propertyPath: shoot
       value: 
       objectReference: {fileID: 1065527468}
+    - target: {fileID: 4972646907656224963, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: maxDistance
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e21ed9eece54c86a8692d99681f193, type: 3}
 --- !u!114 &12549894 stripped
