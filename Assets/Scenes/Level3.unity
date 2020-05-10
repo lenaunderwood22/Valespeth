@@ -1390,7 +1390,7 @@ MonoBehaviour:
   RollerCount: 10
   MoveSpeed: 1
   ColorCheckRate: 0.2
-  newMat: {fileID: 0}
+  newMat: {fileID: 2100000, guid: f2912562cbb29476cb04dd9e26fe8f4c, type: 2}
   Hit: {fileID: 204958177}
   Rollers: []
   StallDuration: 0
@@ -1959,6 +1959,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1912316259243082056, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259243082056, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259243082059, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1003069759}
+    - target: {fileID: 1912316259243082059, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259563638167, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259563638167, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259563638167, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259563638167, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912316259563638167, guid: 40e21ed9eece54c86a8692d99681f193,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4563567001988838091, guid: 40e21ed9eece54c86a8692d99681f193,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2077,6 +2122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &906234681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1912316259243082057, guid: 40e21ed9eece54c86a8692d99681f193,
+    type: 3}
+  m_PrefabInstance: {fileID: 906234677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1003069758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2294,6 +2345,11 @@ PrefabInstance:
       propertyPath: bgm
       value: 
       objectReference: {fileID: 249913925}
+    - target: {fileID: 2804288282699113042, guid: 9df2865c17d5d454b848dd22854fa7db,
+        type: 3}
+      propertyPath: PauseButton
+      value: 
+      objectReference: {fileID: 906234681}
     - target: {fileID: 4356467646750760567, guid: 9df2865c17d5d454b848dd22854fa7db,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -2321,6 +2377,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df2865c17d5d454b848dd22854fa7db, type: 3}
+--- !u!114 &1003069759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2804288282699113042, guid: 9df2865c17d5d454b848dd22854fa7db,
+    type: 3}
+  m_PrefabInstance: {fileID: 1003069758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9783c361045d74cfd9219c8ab9fd85a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154511328
 GameObject:
   m_ObjectHideFlags: 0
